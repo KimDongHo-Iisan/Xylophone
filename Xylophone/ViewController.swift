@@ -11,7 +11,7 @@ import AVFoundation //오디오 하드웨어와 상호작용할수 있는 라이
 
 class ViewController: UIViewController {
     
-    var player: AVAudioPlayer?
+    var player: AVAudioPlayer? //AVAudioPlayer 사운드를 재생하는데 사용하는것.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +22,16 @@ class ViewController: UIViewController {
         playSound()
     }
     
+    // 핑크색 같은 경우는 프로그래밍 개념이지만, 보라색 글자 같은 경우는 애플 API의 내용이므로, api를 보는 습관을 들여야한다. 
     func playSound() {
-        guard let url = Bundle.main.url(forResource: "C", withExtension: "wav") else { return }
+        guard let url = Bundle.main.url(forResource: "C", withExtension: "wav") else { return } //Bundle은 무엇인가.사운드 파일 리소스를 찾는 것
         
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            
-            /* iOS 10 and earlier require the following line:
-             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
-            
+           
             guard let player = player else { return }
             
             player.play()
