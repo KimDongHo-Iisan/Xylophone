@@ -14,7 +14,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
 
-
+    @IBAction func KeyPressed(_ sender: Any) {
+        print("I got pressed")
+    }
+    
     
 
 }
