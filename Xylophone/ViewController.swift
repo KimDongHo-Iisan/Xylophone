@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func KeyPressed(_ sender: UIButton) {
-        print("I got pressed")
+       
+        playSound()
     }
     
     func playSound() {
