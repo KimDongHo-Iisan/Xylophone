@@ -1,45 +1,24 @@
-//
-//  ViewController.swift
-//  Xylophone
-//
-//  Created by Angela Yu on 28/06/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
-//
-
 import UIKit
-import AVFoundation //오디오 하드웨어와 상호작용할수 있는 라이브러리.
+import AVFoundation
 
 class ViewController: UIViewController {
     
-    var player: AVAudioPlayer? //AVAudioPlayer 사운드를 재생하는데 사용하는것.
-    
+    var player: AVAudioPlayer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    @IBAction func KeyPressed(_ sender: UIButton) {
-       
+
+    @IBAction func keyPressed(_ sender: UIButton) {
         playSound()
     }
     
-    // 핑크색 같은 경우는 프로그래밍 개념이지만, 보라색 글자 같은 경우는 애플 API의 내용이므로, api를 보는 습관을 들여야한다. 
     func playSound() {
-        guard let url = Bundle.main.url(forResource: "C", withExtension: "wav") else { return } //Bundle은 무엇인가.사운드 파일 리소스를 찾는 것
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-           
-            guard let player = player else { return }
-            
-            player.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
+        //url을 C.wav 파일의 위치로 설정
+        let url = Bundle.main.url(forResource: "C", withExtension: "wav")
+        player = try! AVAudioPlayer(contentsOf: url!) //파일을 player에 넣음
+        player.play() //소리를 재생해라.
+        //전화기가 무음 모드가 켜져있을때 소리가 나오도록 하는 부분을 제거했기 때문에 무음모드일때는 소리가 나지않는다. 
+                
     }
 }
-
