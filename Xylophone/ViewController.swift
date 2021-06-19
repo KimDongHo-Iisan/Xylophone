@@ -10,6 +10,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
+        print(sender.backgroundColor) // 누른 버튼의 배경색을 출력
+        print(sender.currentTitle) //현재 누른 버튼의 타이틀 출력
         playSound()
     }
     
